@@ -114,6 +114,11 @@ MangaSoft is a reader and player for files you already own. It does not provide,
 material. You are responsible for the content you put in your own library. The doujin metadata lookup uses
 nhentai's public API and is off until you add a doujin folder.
 
+## Credits
+
+Built on Express, hls.js, sharp, tesseract.js, JASSUB and ffmpeg, with metadata from AniList, MangaDex and
+Jikan. Full list and licenses in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+
 ## Contact
 
 Come yell at me. Twitter: [@Itsukos](https://twitter.com/Itsukos), Discord: Itsuko.
