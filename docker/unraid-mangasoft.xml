@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>MangaSoft</Name>
+  <Repository>ghcr.io/itsukos/mangasoft:latest</Repository>
+  <Registry>https://github.com/Itsukos/MangaSoft/pkgs/container/mangasoft</Registry>
+  <Network>bridge</Network>
+  <MyIP/>
+  <Shell>sh</Shell>
+  <Privileged>false</Privileged>
+  <Support>https://github.com/Itsukos/MangaSoft/issues</Support>
+  <Project>https://github.com/Itsukos/MangaSoft</Project>
+  <Overview>Self-hosted manga, anime and light novel server. Read manga by volume or chapter, watch anime in the browser, read EPUB light novels, pull covers and details from AniList and MangaDex, and track progress on AniList. Updates itself if you give it an update server address.</Overview>
+  <Category>MediaServer:Books</Category>
+  <WebUI>http://[IP]:[PORT:8484]/</WebUI>
+  <TemplateURL/>
+  <Icon/>
+  <ExtraParams/>
+  <PostArgs/>
+  <CPUset/>
+  <DateInstalled/>
+  <DonateText/>
+  <DonateLink/>
+  <Requires/>
+  <Config Name="Web UI port" Target="8484" Default="8484" Mode="tcp" Description="Port for the web interface" Type="Port" Display="always" Required="true" Mask="false">8484</Config>
+  <Config Name="App data" Target="/config" Default="/mnt/user/appdata/mangasoft" Mode="rw" Description="Database, covers and the self-updating program. Keep this on your cache/appdata share." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/mangasoft</Config>
+  <Config Name="Manga folder" Target="/media/manga" Default="" Mode="ro" Description="Your manga library. Each series is a sub-folder (or .cbz/.zip). Read-only: MangaSoft never writes here." Type="Path" Display="always" Required="true" Mask="false"></Config>
+  <Config Name="Doujin folder (optional)" Target="/media/doujin" Default="" Mode="ro" Description="Optional separate library for the Doujin section. Leave empty if you don't want it." Type="Path" Display="always" Required="false" Mask="false"></Config>
+  <Config Name="Anime folder (optional)" Target="/media/anime" Default="" Mode="ro" Description="Optional library of anime episodes (video files) for the Anime section. Leave empty if you don't want it." Type="Path" Display="always" Required="false" Mask="false"></Config>
+  <Config Name="Light novel folder (optional)" Target="/media/novels" Default="" Mode="ro" Description="Optional library of .epub light novels for the Novels section. Leave empty if you do not want it." Type="Path" Display="always" Required="false" Mask="false"></Config>
+  <Config Name="MANGA_DIR" Target="MANGA_DIR" Default="/media/manga" Mode="" Description="First-run library location inside the container. Leave as is." Type="Variable" Display="advanced" Required="false" Mask="false">/media/manga</Config>
+  <Config Name="DOUJIN_DIR (set to /media/doujin to enable)" Target="DOUJIN_DIR" Default="" Mode="" Description="Set to /media/doujin if you mapped a doujin folder above, otherwise leave empty." Type="Variable" Display="advanced" Required="false" Mask="false"></Config>
+  <Config Name="ANIME_DIR (set to /media/anime to enable)" Target="ANIME_DIR" Default="" Mode="" Description="Set to /media/anime if you mapped an anime folder above, otherwise leave empty." Type="Variable" Display="advanced" Required="false" Mask="false"></Config>
+  <Config Name="NOVEL_DIR (set to /media/novels to enable)" Target="NOVEL_DIR" Default="" Mode="" Description="Set to /media/novels if you mapped a light novel folder above, otherwise leave empty." Type="Variable" Display="advanced" Required="false" Mask="false"></Config>
+  <Config Name="PUID" Target="PUID" Default="99" Mode="" Description="User ID the app runs as (Unraid: 99 = nobody)" Type="Variable" Display="advanced" Required="false" Mask="false">99</Config>
+  <Config Name="PGID" Target="PGID" Default="100" Mode="" Description="Group ID the app runs as (Unraid: 100 = users)" Type="Variable" Display="advanced" Required="false" Mask="false">100</Config>
+  <Config Name="TZ" Target="TZ" Default="UTC" Mode="" Description="Timezone, e.g. America/New_York" Type="Variable" Display="advanced" Required="false" Mask="false">UTC</Config>
+</Container>

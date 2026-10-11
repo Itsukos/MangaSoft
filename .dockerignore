@@ -1,0 +1,11 @@
+node_modules
+data
+release
+update-server
+docker/*.xml
+docker/*.md
+*.bat
+*.vbs
+*.ps1
+.git
+.gitignore

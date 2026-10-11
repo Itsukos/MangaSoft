@@ -1,0 +1,25 @@
+# Run with:  docker compose up -d --build
+# Only the manga folder is needed. Delete the sections you do not use.
+services:
+  mangasoft:
+    build: .
+    image: mangasoft:latest
+    container_name: mangasoft
+    restart: unless-stopped
+    ports:
+      - "8484:8484"
+    environment:
+      PUID: "1000"                    # Unraid: 99
+      PGID: "1000"                    # Unraid: 100
+      TZ: "UTC"
+      MANGA_DIR: "/media/manga"       # default library on first start
+      # ANIME_DIR: "/media/anime"     # enables the anime section
+      # NOVEL_DIR: "/media/novels"    # enables the light novel section
+      # DOUJIN_DIR: "/media/doujin"   # enables the doujin section
+      # MANGASOFT_UPDATE_URL: ""      # optional update server, see docs/updates.md
+    volumes:
+      - ./config:/config                        # database, covers and the app itself
+      - /path/to/your/manga:/media/manga:ro
+      # - /path/to/your/anime:/media/anime:ro
+      # - /path/to/your/novels:/media/novels:ro
+      # - /path/to/your/doujin:/media/doujin:ro

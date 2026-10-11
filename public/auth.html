@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en" data-theme="sakura">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Connecting AniList…</title>
+  <link rel="stylesheet" href="/style.css">
+  <script>
+    try { document.documentElement.dataset.theme = JSON.parse(localStorage.getItem('ms.prefs') || '{}').theme || 'sakura'; } catch {}
+  </script>
+</head>
+<body>
+  <main style="max-width:560px;text-align:center;padding-top:80px">
+    <div style="font-size:56px">🌸</div>
+    <h1 id="h">Connecting to AniList…</h1>
+    <p id="p" class="muted"></p>
+    <p><a class="btn primary" href="/#/settings">Back to MangaSoft</a></p>
+  </main>
+  <script>
+    (async () => {
+      const h = document.getElementById('h'), p = document.getElementById('p');
+      const token = new URLSearchParams(location.hash.slice(1)).get('access_token');
+      if (!token) { h.textContent = 'No token received'; p.textContent = 'Start again from Settings → AniList.'; return; }
+      try {
+        const r = await fetch('/api/anilist/token', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ token }) });
+        const j = await r.json();
+        if (!r.ok) throw new Error(j.error);
+        history.replaceState(null, '', location.pathname);
+        h.textContent = `Connected as ${j.user.name} ✓`;
+        p.textContent = 'You can now mark chapters as read on AniList straight from the reader.';
+      } catch (e) {
+        h.textContent = 'Could not save the token';
+        p.textContent = e.message;
+      }
+    })();
+  </script>
+</body>
+</html>
