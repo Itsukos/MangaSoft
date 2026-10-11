@@ -1,7 +1,7 @@
 # MangaSoft
 
 A self-hosted server for your manga, anime and light novels. Point it at your folders, then read and watch from a
-browser on your PC, phone or tablet. Think Jellyfin, but for manga.
+browser on your PC, phone or tablet.
 
 It reads the files you already have. It does not download anything, and it ships with no content.
 
