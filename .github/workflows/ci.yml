@@ -1,0 +1,22 @@
+name: CI
+on:
+  push:
+    branches: [main]
+  pull_request:
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm ci --omit=optional
+      - name: Syntax check
+        run: |
+          for f in server/*.js public/*.js; do node --check "$f"; done
+      - name: Boot the server
+        run: |
+          MANGASOFT_DATA=$RUNNER_TEMP/data PORT=8585 node server/index.js &
+          for i in $(seq 1 30); do curl -fs http://127.0.0.1:8585/healthz && exit 0; sleep 1; done
+          exit 1
